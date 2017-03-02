@@ -5,7 +5,7 @@ setup(
     packages=['flaskr'],
     include_package_data=True,
     install_requires=[
-        'flask',
+        'flask', 'tornado',
     ],
     setup_requires=[
         'pytest-runner',
