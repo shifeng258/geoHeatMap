@@ -89,10 +89,10 @@ def close_db(error):
 
 @app.route('/')
 def show_entries():
-    db = get_db()
-    cur = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
-    entries = cur.fetchall()
-    return render_template('show_entries.html', entries=entries)
+    # db = get_db()
+    # cur = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
+    # entries = cur.fetchall()
+    return render_template('map.html')
 
 
 @app.route('/add', methods=['POST'])
