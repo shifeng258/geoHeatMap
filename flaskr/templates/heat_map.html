@@ -8,7 +8,7 @@
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=M3fmIdUYRm17UcWzG2fghq1HDt58bEKS"></script>
     <script type="text/javascript"
-            src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+            src="http://gallery.echartsjs.com/dep/echarts/latest/extension/bmap.min.js"></script>
     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
@@ -22,25 +22,27 @@
     $.getJSON(uploadedDataURL, function (data) {
         var points = [].concat.apply([], data.map(function (track) {
             return track.map(function (seg) {
-                return seg.coord.concat([1]);
+                return seg.coord.concat(seg.elevation);
             });
         }));
         myChart.setOption({
             animation: false,
             bmap: {
                 center: {{center}},
-                zoom: 12,
+                zoom: 13,
                 roam: true
             },
             visualMap: {
                 show: false,
+                blurSize: 10,
                 top: 'top',
                 min: 0,
-                max: 5,
+                max: 100,
+                splitNumber: 5,
                 seriesIndex: 0,
                 calculable: true,
                 inRange: {
-                    color: ['red', 'red', 'yellow', 'yellow', 'red'],
+                    color: ['green', 'blue', 'yellow', 'red'],
                     colorAlpha: 0
                 }
             },
@@ -48,7 +50,7 @@
                 type: 'heatmap',
                 coordinateSystem: 'bmap',
                 data: points,
-                pointSize: 5,
+                pointSize: 7,
                 blurSize: 6
             }]
         })
